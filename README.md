@@ -1,7 +1,7 @@
 # ระบบ Feature Toggle
 
 โปรเจคนี้แสดงการใช้งาน Feature Toggle แบบต่างๆ 2 แบบ:
-1. **Environment-based Feature Toggle** - ใช้ไฟล์ `.env` ในการควบคุมการเปิดปิดฟีเจอร์
+1. **Environment-based** - ใช้ไฟล์ `.env` ในการควบคุมการเปิดปิดฟีเจอร์
 2. **Gradual Rollout** - เปิดฟีเจอร์ให้ผู้ใช้บางส่วนตามเปอร์เซ็นต์
 
 ---
@@ -20,5 +20,5 @@
 
 ## ตัวอย่างการใช้งาน
 
-- [Environment-based Feature Toggle](feature-toggle-env-example)
+- [Environment-based](feature-toggle-env-example)
 - [Gradual Rollout](feature-toggle-gradual-rollout)
