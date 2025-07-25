@@ -43,7 +43,7 @@ curl -X POST http://localhost:3000/api/feature-toggle/features/new_dashboard/che
 ```bash
 curl -X PUT http://localhost:3000/api/feature-toggle/features/new_dashboard/rollout \
   -H "Content-Type: application/json" \
-  -d '{"percentage": 75}'
+  -d '{"percentage": 50}'
 ```
 
 เริ่ม Gradual Rollout:
@@ -101,7 +101,7 @@ rolloutStrategy: 'gradual'
 ```sql
 -- เปลี่ยน rollout percentage
 UPDATE feature_flags 
-SET rollout_percentage = 75 
+SET rollout_percentage = 50 
 WHERE name = 'new_dashboard';
 
 -- เปิด/ปิดฟีเจอร์

@@ -38,7 +38,7 @@ app.get('/health', async (req, res) => {
 app.get('/dashboard', async (req, res) => {
   try {
     const user = (req as any).user;
-    
+
     // Check multiple features
     const response = await fetch(`http://localhost:${PORT}/api/feature-toggle/features/new_dashboard/check`, {
       method: 'POST',
@@ -50,9 +50,20 @@ app.get('/dashboard', async (req, res) => {
       },
       body: JSON.stringify({ user })
     });
-    
-    const featureCheck = await response.json();
-    
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    type FeatureCheckResponse = {
+      feature: string
+      enabled: boolean
+      user: string
+      timestamp: string
+    }
+
+    const featureCheck = await response.json() as FeatureCheckResponse;
+
     res.json({
       message: 'Dashboard loaded',
       user: user.id,
@@ -78,7 +89,7 @@ app.listen(PORT, () => {
   console.log(`🔄 Cache TTL: ${process.env.FEATURE_CACHE_TTL}ms`);
   console.log(`⏱️  Rollout Update Interval: ${process.env.ROLLOUT_UPDATE_INTERVAL}ms`);
   console.log('=====================================');
-  
+
   console.log('\n📚 Available Endpoints:');
   console.log('GET    /health - Health check');
   console.log('GET    /dashboard - Example dashboard with feature toggle');
@@ -89,7 +100,7 @@ app.listen(PORT, () => {
   console.log('POST   /api/feature-toggle/features/:name/gradual-rollout - Start gradual rollout');
   console.log('GET    /api/feature-toggle/features/:name/analytics - Get feature analytics');
   console.log('GET    /api/feature-toggle/segments - List user segments');
-  
+
   console.log('\n🧪 Example curl commands:');
   console.log(`curl -X POST http://localhost:${PORT}/api/feature-toggle/features/new_dashboard/check \\`);
   console.log('  -H "Content-Type: application/json" \\');
