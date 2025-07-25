@@ -4,7 +4,7 @@ import { AuthService } from './services/auth.service';
 import { NotificationService } from './services/notification.service';
 import { DashboardController } from './controllers/dashboard.controller';
 import { loggingMiddleware } from './middleware/logging.middleware';
-import { FeatureToggle } from './middleware/feature-toggle.middleware';
+import { FeatureToggle } from './feature-toggle';
 
 const app = express();
 const PORT = process.env.PORT || 3000;

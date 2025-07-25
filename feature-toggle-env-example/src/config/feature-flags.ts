@@ -1,51 +1,51 @@
-import dotenv from 'dotenv';
+import dotenv from 'dotenv'
 
 // Load environment variables
-dotenv.config();
+dotenv.config()
 
 export interface FeatureFlags {
   // Database Features
-  enableNewDatabase: boolean;
-  enableDatabaseMigration: boolean;
-  enableDatabaseBackup: boolean;
+  enableNewDatabase: boolean
+  enableDatabaseMigration: boolean
+  enableDatabaseBackup: boolean
 
   // Authentication Features
-  enableTwoFactorAuth: boolean;
-  enableOauthLogin: boolean;
-  enablePasswordReset: boolean;
+  enableTwoFactorAuth: boolean
+  enableOauthLogin: boolean
+  enablePasswordReset: boolean
 
   // UI Features
-  enableNewDashboard: boolean;
-  enableDarkMode: boolean;
-  enableBetaFeatures: boolean;
+  enableNewDashboard: boolean
+  enableDarkMode: boolean
+  enableBetaFeatures: boolean
 
   // Payment Features
-  enablePaymentV2: boolean;
-  enableSubscriptionBilling: boolean;
-  enableCryptoPayments: boolean;
+  enablePaymentV2: boolean
+  enableSubscriptionBilling: boolean
+  enableCryptoPayments: boolean
 
   // Analytics & Monitoring
-  enableAnalytics: boolean;
-  enableErrorTracking: boolean;
-  enablePerformanceMonitoring: boolean;
+  enableAnalytics: boolean
+  enableErrorTracking: boolean
+  enablePerformanceMonitoring: boolean
 
   // External Services
-  enableEmailNotifications: boolean;
-  enableSmsNotifications: boolean;
-  enablePushNotifications: boolean;
+  enableEmailNotifications: boolean
+  enableSmsNotifications: boolean
+  enablePushNotifications: boolean
 
   // Debug & Development
-  enableDebugMode: boolean;
-  enableApiLogging: boolean;
-  enableMockData: boolean;
+  enableDebugMode: boolean
+  enableApiLogging: boolean
+  enableMockData: boolean
 }
 
 // Helper function to parse boolean from environment variable
 function parseBoolean(value: string | undefined, defaultValue: boolean = false): boolean {
-  if (value === undefined) return defaultValue;
+  if (value === undefined) return defaultValue
 
-  const normalizedValue = value.toLowerCase().trim();
-  return normalizedValue === 'true' || normalizedValue === '1' || normalizedValue === 'yes';
+  const normalizedValue = value.toLowerCase().trim()
+  return normalizedValue === 'true' || normalizedValue === '1' || normalizedValue === 'yes'
 }
 
 // Create feature flags object from environment variables
@@ -83,5 +83,5 @@ export const featureFlags: FeatureFlags = {
   // Debug & Development
   enableDebugMode: parseBoolean(process.env.ENABLE_DEBUG_MODE),
   enableApiLogging: parseBoolean(process.env.ENABLE_API_LOGGING),
-  enableMockData: parseBoolean(process.env.ENABLE_MOCK_DATA)
-};
+  enableMockData: parseBoolean(process.env.ENABLE_MOCK_DATA),
+}
