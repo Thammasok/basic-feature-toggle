@@ -4,11 +4,9 @@ import { User } from '../types/feature-toggle'
 export type RequestWithUser = Request & { user: User }
 
 // Middleware to extract user information from headers or JWT
-export function extractUserMiddleware(
-  req: RequestWithUser,
-  res: Response,
-  next: NextFunction
-): void {
+export function extractUserMiddleware(req: Request, res: Response, next: NextFunction): void {
+  // Type assertion to RequestWithUser since we're about to add the user property
+  const reqWithUser = req as RequestWithUser
   // In a real application, you would extract user info from JWT token
   // For demo purposes, using headers
 
@@ -29,7 +27,7 @@ export function extractUserMiddleware(
   }
 
   // Attach user to request
-  req.user = user
+  reqWithUser.user = user
 
   next()
 }
